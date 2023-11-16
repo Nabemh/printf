@@ -1,5 +1,6 @@
 #include "main.h"
 
+
 int i;
 
 static Map function_call[] = {
@@ -9,6 +10,15 @@ static Map function_call[] = {
 	
 	{'\0', NULL}
 };
+
+/**
+ * handle_call - handles which function is called at the moment
+ * @spec_call: specfier being called
+ * @list: name of va list
+ *
+ * Author: Nathan
+ * Return: nothing
+ */
 
 void handle_call(char spec_call, va_list list)
 {
