@@ -20,8 +20,13 @@ void char_func(va_list list)
 
 void str_func(va_list list)
 {
+	int len = 0;
 	char *string = va_arg(list, char*);
 
+	while (string[len] != '\0')
+	{
+		len++;
+	}
 	write(1, string, strlen(string));
 }
 
