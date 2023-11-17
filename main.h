@@ -23,6 +23,9 @@ typedef struct
 int _printf(const char *format, ...);
 void char_func(va_list list);
 void str_func(va_list list);
+void handle_d(va_list list);
+void handle_i(va_list list);
 void print_pnt();
+ssize_t _write(int file_des, const void *buff, size_t count);
 void handle_call(char spec_call, va_list list);
 #endif

@@ -17,6 +17,8 @@ void handle_call(char spec_call, va_list list)
 		{'c', char_func},
 		{'s', str_func},
 		{'%', print_pnt},
+		{'d', handle_d},
+		{'i', handle_i},
 		{'\0', NULL}
 };
 
