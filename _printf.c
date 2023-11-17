@@ -1,45 +1,60 @@
 #include "main.h"
 
-/**
- * _printf - produces output according to a format
- * @format: a character string
- *
- * Author:
- * Return: number of characters printed
- */
-
 int _printf(const char *format, ...)
 {
-	int c;
-	va_list frmt;
+    int char_out = 0;
+    va_list arg_set;
+    
+    if (!format)
+        return (-1);
 
-	c = 0;
+    va_start(arg_set, format);
 
-	if (format == NULL)
-		return (-1);
+    while (*format)
+    {
+        if (*format != '%')
+        {
+            write(1, format, 1);
+            char_out++;
+        }
+        else 
+        {
+            format++;
+            if (*format == '\0')
+            break;
+            
+            if (*format == '%')
+            {
+                write(1, format, 1);
+                char_out++;
+            }
 
-	va_start (frmt, format);
+            else if (*format == 's')
+            {
+                char *s = va_arg(arg_set, char*);
+                int _strlen = 0;
+                
+                while (s[_strlen] != '\0')
+                {
+                    _strlen++;
+                }
+                write(1, s, _strlen);
+                char_out = _strlen + char_out;
 
-	while (*format)
-	{
-		/* Normal characters */
-		if (*format != '%')
-		{
-			write(1, format, 1);
-			c++;
-		}
-		/* Reaches % */
-		else
-		{
-			format++;
-			handle_call(*format, frmt);
-			c++;
-		}
-		format++;
-	}
+            }
+            else if(*format == 'c')
+            {
+                char c;
+                c = va_arg(arg_set, int);
+                write(1, &c, 1);
+                char_out++;
+            }
+        }
 
-	va_end(frmt);
-	return c;
+        format++;
+    }
 
-	va_end(frmt);
+    va_end(arg_set);
+    return (char_out);
+
 }
