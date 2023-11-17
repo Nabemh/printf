@@ -27,7 +27,7 @@ void str_func(va_list list)
 	{
 		len++;
 	}
-	write(1, string, strlen(string));
+	write(1, string, len);
 }
 
 /**
